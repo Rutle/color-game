@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>640</width>
+    <height>244</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">#blue_button {
+	background-color:rgb(60, 154, 255);
+}
+#green_button {
+	background-color:rgb(44, 170, 113);
+}
+#yellow_button {
+	background-color:rgb(244, 255, 33)
+}
+#red_button {
+	background-color:rgb(255, 64, 64);
+}
+#status_label {
+	/*background-color:rgb(239, 242, 255);*/
+	background-color: #00BCD4;
+
+}
+#status_bottom_shadow {
+/*background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:0.472, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(252, 251, 255, 5));*/
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:0.472, stop:0 rgba(0, 0, 0, 167), stop:1 rgba(96, 125, 139, 5));
+}
+QDialog{
+/*	background-color: rgb(255, 255, 255);*/
+	background-color: #607D8B;
+/*rgb(96, 125, 139)*/
+}
+
+
+
+</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="spacing">
+    <number>6</number>
+   </property>
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>6</number>
+   </property>
+   <item>
+    <layout class="QGridLayout" name="top_grid">
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+     <property name="bottomMargin">
+      <number>0</number>
+     </property>
+     <property name="spacing">
+      <number>0</number>
+     </property>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="bottom_buttons_horz">
+     <property name="spacing">
+      <number>0</number>
+     </property>
+     <item>
+      <widget class="QPushButton" name="exit">
+       <property name="styleSheet">
+        <string notr="true">#exit {
+	background-color: #03A9F4;
+}</string>
+       </property>
+       <property name="text">
+        <string>Exit</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="start_button">
+       <property name="styleSheet">
+        <string notr="true">#start_button {
+	background-color: #03A9F4;
+}</string>
+       </property>
+       <property name="text">
+        <string>Start</string>
+       </property>
+       <property name="default">
+        <bool>false</bool>
+       </property>
+       <property name="flat">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>exit</sender>
+   <signal>clicked()</signal>
+   <receiver>Dialog</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>313</x>
+     <y>420</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>631</x>
+     <y>414</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

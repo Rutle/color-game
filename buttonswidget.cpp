@@ -24,7 +24,6 @@ ButtonsWidget::ButtonsWidget(QWidget *parent) :
 
     QVBoxLayout *base_layout{new QVBoxLayout(this)};
     QVBoxLayout *base_layout_status_labels{new QVBoxLayout()};
-    QHBoxLayout *base_layout_small_labels{new QHBoxLayout()};
 
     base_layout_status_labels->setContentsMargins(0, 0, 0, 0);
     base_layout_status_labels->setMargin(0);
@@ -47,39 +46,6 @@ ButtonsWidget::ButtonsWidget(QWidget *parent) :
     base_layout_status_labels->addStretch();
 
 
-    yellow_label_small = new QLabel(this);
-    yellow_label_small->setObjectName("yellow_label_small");
-    yellow_label_small->setMinimumHeight(25);
-    yellow_label_small->setFixedWidth(150);
-    yellow_label_small->setText("Yellow");
-    yellow_label_small->setAlignment(Qt::AlignCenter);
-
-    green_label_small = new QLabel(this);
-    green_label_small->setObjectName("green_label_small");
-    green_label_small->setMinimumHeight(25);
-    green_label_small->setFixedWidth(150);
-    green_label_small->setText("Green");
-    green_label_small->setAlignment(Qt::AlignCenter);
-
-    red_label_small = new QLabel(this);
-    red_label_small->setObjectName("red_label_small");
-    red_label_small->setMinimumHeight(25);
-    red_label_small->setFixedWidth(150);
-    red_label_small->setText("Red");
-    red_label_small->setAlignment(Qt::AlignCenter);
-
-    blue_label_small = new QLabel(this);
-    blue_label_small->setObjectName("blue_label_small");
-    blue_label_small->setMinimumHeight(25);
-    blue_label_small->setFixedWidth(150);
-    blue_label_small->setText("Blue");
-    blue_label_small->setAlignment(Qt::AlignCenter);
-
-    base_layout_small_labels->addWidget(yellow_label_small);
-    base_layout_small_labels->addWidget(green_label_small);
-    base_layout_small_labels->addWidget(red_label_small);
-    base_layout_small_labels->addWidget(blue_label_small);
-
     create_buttons();
     set_stylesheets();
 
@@ -89,7 +55,6 @@ ButtonsWidget::ButtonsWidget(QWidget *parent) :
     }
 
     base_layout->addLayout(base_layout_status_labels);
-    base_layout->addLayout(base_layout_small_labels);
     base_layout->addLayout(base_layout_big_buttons);
     base_layout->setContentsMargins(0, 0, 0, 5);
     setLayout(base_layout);
@@ -216,27 +181,6 @@ void ButtonsWidget::create_buttons() {
         temp_button->setFixedSize(150, 150);
         buttons_.push_back(temp_button);
     }
-    /*
-    yellow_button = new QPushButton();
-    yellow_button->setObjectName("Yellow");
-    yellow_button->setFixedSize(150,150);
 
-    green_button = new QPushButton();
-    green_button->setObjectName("Green");
-    green_button->setFixedSize(150,150);
-
-    red_button = new QPushButton();
-    red_button->setObjectName("Red");
-    red_button->setFixedSize(150,150);
-
-    blue_button = new QPushButton();
-    blue_button->setObjectName("Blue");
-    blue_button->setFixedSize(150,150);
-
-    buttons_.push_back(yellow_button);
-    buttons_.push_back(green_button);
-    buttons_.push_back(red_button);
-    buttons_.push_back(blue_button);
-    */
 }
 

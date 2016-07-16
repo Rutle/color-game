@@ -10,13 +10,16 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = color-game
 TEMPLATE = app
+CONFIG += c++11
 
 
 SOURCES += main.cpp\
         dialog.cpp \
-    buttonswidget.cpp
+    buttonswidget.cpp \
+    colorbutton.cpp
 
 HEADERS  += dialog.hh \
-    buttonswidget.hh
+    buttonswidget.hh \
+    colorbutton.hh
 
 FORMS    += dialog.ui

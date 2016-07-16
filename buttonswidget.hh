@@ -6,11 +6,12 @@
 #include <QPushButton>
 #include <QTimer>
 #include <QLabel>
+#include <QPair>
 
 class ButtonsWidget : public QWidget {
         Q_OBJECT
     public:
-        enum {YellowLabel, GreenLabel, RedLabel, BlueLabel};
+        enum {Yellow, Green, Red, Blue};
         explicit ButtonsWidget(QWidget *parent = 0);
         ~ButtonsWidget();
         void start_game();
@@ -26,11 +27,13 @@ class ButtonsWidget : public QWidget {
         void on_yellow_button_clicked();
         void label_toggle(int number);
         void toggle_small_label_off();
-
+        void button_clicked(int number);
     private:
+
         void generate_new_time();
         void stop_game();
-
+        void set_stylesheets();
+        void set_buttons();
         QPushButton *red_button;
         QPushButton *blue_button;
         QPushButton *green_button;
@@ -51,6 +54,7 @@ class ButtonsWidget : public QWidget {
         int game_iter_;
         int correct_;
         QList<int> numbers_;
+        QList<QPushButton *> buttons_;
 };
 
 #endif // BUTTONSWIDGET_HH

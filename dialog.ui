@@ -14,21 +14,10 @@
    <string>Dialog</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">#blue_button {
-	background-color:rgb(60, 154, 255);
-}
-#green_button {
-	background-color:rgb(44, 170, 113);
-}
-#yellow_button {
-	background-color:rgb(244, 255, 33)
-}
-#red_button {
-	background-color:rgb(255, 64, 64);
-}
+   <string notr="true">
 #status_label {
 	/*background-color:rgb(239, 242, 255);*/
-	background-color: #00BCD4;
+	background-color: rgb(170, 170, 171);
 
 }
 #status_bottom_shadow {

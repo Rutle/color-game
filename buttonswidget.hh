@@ -21,10 +21,6 @@ class ButtonsWidget : public QWidget {
     public slots:
         void choose_random_color();
         void time_over();
-        void on_red_button_clicked();
-        void on_blue_button_clicked();
-        void on_green_button_clicked();
-        void on_yellow_button_clicked();
         void button_toggle_on(int number);
         void toggle_button_off();
         void button_clicked(int number);

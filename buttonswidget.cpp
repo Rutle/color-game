@@ -155,175 +155,19 @@ void ButtonsWidget::time_over() {
     status_label_->setText("Game Over!");
 }
 
-void ButtonsWidget::on_red_button_clicked() {
-    qDebug() << "player_iter: [" << player_iter_ << "]" << "numbers_.at(player_iter_) = ["<< numbers_.at(player_iter_) << "]";
-    if ( numbers_.at(player_iter_) == Red ) {
-        //qDebug() << "Correct number: [2] == [" << numbers_.at(player_iter_) << "]";
-        player_iter_ += 1;
-        correct_ += 1;
-        status_label_->setText(QString("Correct clicks in row: %1").arg(QString::number(correct_)));
-        //qDebug() << "Correct: " << correct_;
-    } else {
-        qDebug() << "Wrong color! Game Over! Correct choice was: [" << numbers_.at(player_iter_) << "]";
-        stop_game();
-    }
-}
-
-void ButtonsWidget::on_blue_button_clicked() {
-    qDebug() << "player_iter: [" << player_iter_ << "]" << "numbers_.at(player_iter_) = ["<< numbers_.at(player_iter_) << "]";
-    if ( numbers_.at(player_iter_) == Blue ) {
-        //qDebug() << "Correct number: [3] == [" << numbers_.at(player_iter_) << "]";
-        player_iter_ += 1;
-        correct_ += 1;
-        status_label_->setText(QString("Correct clicks in row: %1").arg(QString::number(correct_)));
-        //qDebug() << "Correct: " << correct_;
-    } else {
-        qDebug() << "Wrong color! Game Over! Correct choice was: [" << numbers_.at(player_iter_) << "]";
-        stop_game();
-    }
-
-}
-
-void ButtonsWidget::on_green_button_clicked() {
-    qDebug() << "player_iter: [" << player_iter_ << "]" << "numbers_.at(player_iter_) = ["<< numbers_.at(player_iter_) << "]";
-    if ( numbers_.at(player_iter_) == Green ) {
-        //qDebug() << "Correct number: [1] == [" << numbers_.at(player_iter_) << "]";
-        player_iter_ += 1;
-        correct_ += 1;
-        status_label_->setText(QString("Correct clicks in row: %1").arg(QString::number(correct_)));
-        //qDebug() << "Correct: " << correct_;
-    } else {
-        qDebug() << "Wrong color! Game Over! Correct choice was: [" << numbers_.at(player_iter_) << "]";
-        stop_game();
-    }
-
-}
-
-void ButtonsWidget::on_yellow_button_clicked() {
-    qDebug() << "player_iter: [" << player_iter_ << "]" << "numbers_.at(player_iter_) = ["<< numbers_.at(player_iter_) << "]";
-    if ( numbers_.at(player_iter_) == Yellow ) {
-        //qDebug() << "Correct number: [0] == [" << numbers_.at(player_iter_) << "]";
-        player_iter_ += 1;
-        correct_ += 1;
-        status_label_->setText(QString("Correct clicks in row: %1").arg(QString::number(correct_)));
-        //qDebug() << "Correct: " << correct_;
-    } else {
-        qDebug() << "Wrong color! Game Over! Correct choice was: [" << numbers_.at(player_iter_) << "]";
-        stop_game();
-    }
-
-}
-
 
 void ButtonsWidget::button_toggle_on(int random_number) {
 
     buttons_.at(random_number)->setStyleSheet(COLORS_LIGHT.at(random_number));
-
     button_highlight_timer_->start(150);
-
-    /*
-    switch(random_number) {
-        case Yellow:
-            //qDebug() << "Case 0 (Yellow) ON:" << random_number;
-            yellow_label_small->setStyleSheet(
-                        QString("QLabel#yellow_label_small {"
-                                "background-color:rgb(244, 255, 33);"
-                                "border-style: outset;"
-                                "border-width: 1px;"
-                                "border-radius: 2px;"
-                                "border-color: rgb(69, 71, 9); }"));
-            yellow_button->setStyleSheet(
-                        QString("QPushButton#Yellow { "
-                                "background-color: rgb(244, 255, 33);}"));
-            label_highlight_timer_->start(150);
-            break;
-        case Green:
-            //qDebug() << "Case 1 (Green) ON:" << random_number;
-            green_label_small->setStyleSheet(
-                        QString("QLabel#green_label_small {"
-                                "background-color:rgb(44, 170, 113);"
-                                "border-style: outset;"
-                                "border-width: 1px;"
-                                "border-radius: 2px;"
-                                "border-color: rgb(18, 71, 46);}"));
-            green_button->setStyleSheet(
-                        QString("QPushButton#Green { "
-                                "background-color: rgb(44, 170, 113);}"));
-            label_highlight_timer_->start(150);
-            break;
-        case Red:
-            //qDebug() << "Case 2 (Red) ON:" << random_number;
-            red_label_small->setStyleSheet(
-                        QString("QLabel#red_label_small {"
-                               "background-color:rgb(255, 64, 64);"
-                               "border-style: outset;"
-                               "border-width: 1px;"
-                               "border-radius: 2px;"
-                               "border-color: rgb(117, 29, 29); }"));
-            red_button->setStyleSheet(
-                        QString("QPushButton#Red { "
-                                "background-color: rgb(255, 64, 64);}"));
-            label_highlight_timer_->start(150);
-            break;
-        case Blue:
-            //qDebug() << "Case 3 (Blue) ON:" << random_number;
-            blue_label_small->setStyleSheet(
-                        QString("QLabel#blue_label_small {"
-                                "background-color:rgb(60, 154, 255);"
-                                "border-style: outset;"
-                                "border-width: 1px;"
-                                "border-radius: 2px;"
-                                "border-color: rgb(37, 96, 159); }"));
-            blue_button->setStyleSheet(
-                        QString("QPushButton#Blue { "
-                                "background-color: rgb(60, 154, 255);}"));
-            label_highlight_timer_->start(150);
-            break;
-    }
-    */
 }
 
 void ButtonsWidget::toggle_button_off() {
-    // qDebug() << "Toggle small label off at [" << numbers_.at(game_iter_ - 1) << "]";
     int number{numbers_.at(game_iter_ - 1)};
     buttons_.at(number)->setStyleSheet(COLORS_DARK.at(number));
-    /*
-    switch(number) {
-        case Yellow:
-            //qDebug() << "Case 0 (Yellow) OFF:" << number;
-            yellow_label_small->setStyleSheet("");
-            yellow_button->setStyleSheet(
-                        QString("QPushButton#Yellow { "
-                                "background-color:rgb(94, 97, 12);}"));
-            break;
-        case Green:
-            //qDebug() << "Case 1 (Green) OFF:" << number;
-            green_label_small->setStyleSheet("");
-            green_button->setStyleSheet(
-                        QString("QPushButton#Green { "
-                                "background-color:rgb(21, 81, 53);}"));
-            break;
-        case Red:
-            //qDebug() << "Case 2 (Red) OFF:" << number;
-            red_label_small->setStyleSheet("");
-            red_button->setStyleSheet(
-                        QString("QPushButton#Red { "
-                                "background-color:rgb(83, 20, 20);}"));
-            break;
-        case Blue:
-            //qDebug() << "Case 3 (Blue) OFF:" << number;
-            blue_label_small->setStyleSheet("");
-            blue_button->setStyleSheet(
-                        QString("QPushButton#Blue { "
-                                "background-color:rgb(26, 68, 113);}"));
-            break;
-    }
-    */
 }
 
 void ButtonsWidget::button_clicked(int number) {
-    qDebug() << "Button clicked: " << number;
-
     qDebug() << "player_iter: [" << player_iter_ << "]" << "numbers_.at(player_iter_) = ["<< numbers_.at(player_iter_) << "]";
     if ( numbers_.at(player_iter_) == number ) {
         //qDebug() << "Correct number: [0] == [" << numbers_.at(player_iter_) << "]";

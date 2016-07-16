@@ -15,11 +15,9 @@ CONFIG += c++11
 
 SOURCES += main.cpp\
         dialog.cpp \
-    buttonswidget.cpp \
-    colorbutton.cpp
+    buttonswidget.cpp
 
 HEADERS  += dialog.hh \
-    buttonswidget.hh \
-    colorbutton.hh
+    buttonswidget.hh
 
 FORMS    += dialog.ui

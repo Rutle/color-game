@@ -25,19 +25,15 @@ class ButtonsWidget : public QWidget {
         void on_blue_button_clicked();
         void on_green_button_clicked();
         void on_yellow_button_clicked();
-        void label_toggle(int number);
-        void toggle_small_label_off();
+        void button_toggle_on(int number);
+        void toggle_button_off();
         void button_clicked(int number);
     private:
 
         void generate_new_time();
         void stop_game();
         void set_stylesheets();
-        void set_buttons();
-        QPushButton *red_button;
-        QPushButton *blue_button;
-        QPushButton *green_button;
-        QPushButton *yellow_button;
+        void create_buttons();
 
         QLabel *red_label_small;
         QLabel *blue_label_small;
@@ -47,8 +43,7 @@ class ButtonsWidget : public QWidget {
         QLabel *status_label_;
 
         QTimer *game_timer_;
-        QTimer *player_press_timer_;
-        QTimer *label_highlight_timer_;
+        QTimer *button_highlight_timer_;
 
         int player_iter_;
         int game_iter_;

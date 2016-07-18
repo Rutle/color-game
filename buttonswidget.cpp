@@ -18,8 +18,8 @@ const QList<QString> COLORS_LIGHT{{
         "QPushButton#Blue {background-color:rgb(60, 154, 255);}"}};
 
 ButtonsWidget::ButtonsWidget(QWidget *parent) :
-    QWidget(parent), player_iter_{0},
-    game_iter_{0}, correct_{0}{
+    QWidget(parent), player_turn_{0},
+    game_turn_{0}, correct_{0}{
 
 
     QVBoxLayout *base_layout{new QVBoxLayout(this)};
@@ -109,8 +109,8 @@ void ButtonsWidget::choose_random_color() {
     int random_number = qrand() % 4;
     generate_new_time();
     numbers_.push_back(random_number);
-    qDebug() << "game_iter: [" << game_iter_ << "]" << "numbers_.at(game_iter_) = [" << numbers_.at(game_iter_) << "]";
-    game_iter_ += 1;
+    qDebug() << "game_iter: [" << game_turn_ << "]" << "numbers_.at(game_turn_) = [" << numbers_.at(game_turn_) << "]";
+    game_turn_ += 1;
     emit random_value(random_number);
 
 }
@@ -128,20 +128,20 @@ void ButtonsWidget::button_toggle_on(int random_number) {
 }
 
 void ButtonsWidget::toggle_button_off() {
-    int number{numbers_.at(game_iter_ - 1)};
+    int number{numbers_.at(game_turn_ - 1)};
     buttons_.at(number)->setStyleSheet(COLORS_DARK.at(number));
 }
 
 void ButtonsWidget::button_clicked(int number) {
-    qDebug() << "player_iter: [" << player_iter_ << "]" << "numbers_.at(player_iter_) = ["<< numbers_.at(player_iter_) << "]";
-    if ( numbers_.at(player_iter_) == number ) {
-        //qDebug() << "Correct number: [0] == [" << numbers_.at(player_iter_) << "]";
-        player_iter_ += 1;
+    qDebug() << "player_iter: [" << player_turn_ << "]" << "numbers_.at(player_turn_) = ["<< numbers_.at(player_turn_) << "]";
+    if ( numbers_.at(player_turn_) == number ) {
+        //qDebug() << "Correct number: [0] == [" << numbers_.at(player_turn_) << "]";
+        player_turn_ += 1;
         correct_ += 1;
         status_label_->setText(QString("Correct clicks in row: %1").arg(QString::number(correct_)));
         //qDebug() << "Correct: " << correct_;
     } else {
-        qDebug() << "Wrong color! Game Over! Correct choice was: [" << numbers_.at(player_iter_) << "]";
+        qDebug() << "Wrong color! Game Over! Correct choice was: [" << numbers_.at(player_turn_) << "]";
         stop_game();
     }
 }
@@ -159,8 +159,8 @@ void ButtonsWidget::stop_game() {
     game_timer_->stop();
     status_label_->setText(QString("Game over! Correct clicks in row: %1").arg(QString::number(correct_)));
     correct_ = 0;
-    player_iter_ = 0;
-    game_iter_ = 0;
+    player_turn_ = 0;
+    game_turn_ = 0;
     emit game_has_stopped();
 }
 

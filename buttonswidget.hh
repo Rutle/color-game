@@ -41,8 +41,8 @@ class ButtonsWidget : public QWidget {
         QTimer *game_timer_;
         QTimer *button_highlight_timer_;
 
-        int player_iter_;
-        int game_iter_;
+        int player_turn_;
+        int game_turn_;
         int correct_;
         QList<int> numbers_;
         QList<QPushButton *> buttons_;

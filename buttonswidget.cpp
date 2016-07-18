@@ -2,7 +2,7 @@
 #include <QHBoxLayout>
 #include <QtGlobal>
 #include <QDebug>
-
+#include <QMessageBox>
 #include <QDateTime>
 
 const QList<QString> COLORS{{"Yellow", "Green", "Red", "Blue"}};
@@ -35,6 +35,10 @@ ButtonsWidget::ButtonsWidget(QWidget *parent) :
     status_label_->setFixedHeight(30);
     status_label_->setAlignment(Qt::AlignCenter);
     status_label_->setObjectName("status_label");
+    QFont font{status_label_->font()};
+    font.setBold(true);
+    font.setPixelSize(12);
+    status_label_->setFont(font);
 
     base_layout_status_labels->addWidget(status_label_);
 
@@ -44,7 +48,6 @@ ButtonsWidget::ButtonsWidget(QWidget *parent) :
     temp_w->setFixedHeight(4);
     base_layout_status_labels->addWidget(temp_w);
     base_layout_status_labels->addStretch();
-
 
     create_buttons();
     set_stylesheets();
@@ -83,11 +86,6 @@ ButtonsWidget::ButtonsWidget(QWidget *parent) :
 }
 
 ButtonsWidget::~ButtonsWidget() {
-
-    delete red_label_small;
-    delete blue_label_small;
-    delete green_label_small;
-    delete yellow_label_small;
 
     delete game_timer_;
     delete button_highlight_timer_;
@@ -153,7 +151,6 @@ void ButtonsWidget::stop_game() {
     qsrand( QDateTime::currentDateTime().toTime_t() );
     game_timer_->stop();
     button_highlight_timer_->stop();
-    // reset_colors();
     status_label_->setText(QString("Game over! Correct clicks in row: %1").arg(QString::number(correct_)));
     correct_ = 0;
     numbers_.clear();

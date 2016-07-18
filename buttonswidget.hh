@@ -30,11 +30,6 @@ class ButtonsWidget : public QWidget {
         void set_stylesheets();
         void create_buttons();
 
-        QLabel *red_label_small;
-        QLabel *blue_label_small;
-        QLabel *green_label_small;
-        QLabel *yellow_label_small;
-
         QLabel *status_label_;
 
         QTimer *game_timer_;

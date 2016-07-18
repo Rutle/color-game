@@ -20,7 +20,6 @@ class ButtonsWidget : public QWidget {
         void game_has_stopped();
     public slots:
         void choose_random_color();
-        void time_over();
         void button_toggle_on(int number);
         void toggle_button_off();
         void button_clicked(int number);

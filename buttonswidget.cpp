@@ -52,6 +52,7 @@ ButtonsWidget::ButtonsWidget(QWidget *parent) :
     for ( auto button : buttons_ ) {
         base_layout_big_buttons->addWidget(button);
         button->setDisabled(true);
+        button->setFocusPolicy(Qt::NoFocus);
     }
 
     base_layout->addLayout(base_layout_status_labels);
@@ -73,7 +74,7 @@ ButtonsWidget::ButtonsWidget(QWidget *parent) :
 
     int counter{0};
     while ( counter < buttons_.size() ) {
-        // Lambda so we can find the correct button:
+        // Lambda so we can find the correct button that was clicked:
         connect(buttons_.at(counter), &QPushButton::clicked,
                 [this, counter]() { button_clicked(counter); });
         ++counter;
@@ -115,12 +116,6 @@ void ButtonsWidget::choose_random_color() {
 
 }
 
-void ButtonsWidget::time_over() {
-    qDebug() << "Timer over:";
-    status_label_->setText("Game Over!");
-}
-
-
 void ButtonsWidget::button_toggle_on(int random_number) {
 
     buttons_.at(random_number)->setStyleSheet(COLORS_LIGHT.at(random_number));
@@ -157,8 +152,11 @@ void ButtonsWidget::generate_new_time() {
 void ButtonsWidget::stop_game() {
     qsrand( QDateTime::currentDateTime().toTime_t() );
     game_timer_->stop();
+    button_highlight_timer_->stop();
+    // reset_colors();
     status_label_->setText(QString("Game over! Correct clicks in row: %1").arg(QString::number(correct_)));
     correct_ = 0;
+    numbers_.clear();
     player_turn_ = 0;
     game_turn_ = 0;
     emit game_has_stopped();

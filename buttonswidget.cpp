@@ -4,6 +4,8 @@
 #include <QDebug>
 #include <QMessageBox>
 #include <QDateTime>
+#include <QFile>
+
 
 const QList<QString> COLORS{{"Yellow", "Green", "Red", "Blue"}};
 const QList<QString> COLORS_DARK{{
@@ -95,7 +97,7 @@ ButtonsWidget::~ButtonsWidget() {
 }
 
 void ButtonsWidget::start_game() {
-    qDebug() << "Game started!";
+    //qDebug() << "Game started!";
     for ( auto button : buttons_ ) {
         button->setDisabled(false);
     }
@@ -108,7 +110,7 @@ void ButtonsWidget::choose_random_color() {
     int random_number = qrand() % 4;
     generate_new_time();
     numbers_.push_back(random_number);
-    qDebug() << "game_iter: [" << game_turn_ << "]" << "numbers_.at(game_turn_) = [" << numbers_.at(game_turn_) << "]";
+    //qDebug() << "game_iter: [" << game_turn_ << "]" << "numbers_.at(game_turn_) = [" << numbers_.at(game_turn_) << "]";
     game_turn_ += 1;
     emit random_value(random_number);
 
@@ -132,18 +134,58 @@ void ButtonsWidget::button_clicked(int number) {
         player_turn_ += 1;
         correct_ += 1;
         status_label_->setText(QString("Correct clicks in row: %1").arg(QString::number(correct_)));
-        //qDebug() << "Correct: " << correct_;
     } else {
-        qDebug() << "Wrong color! Game Over! Correct choice was: [" << numbers_.at(player_turn_) << "]";
+        //qDebug() << "Wrong color! Game Over! Correct choice was: [" << numbers_.at(player_turn_) << "]";
         stop_game();
     }
+}
+
+void ButtonsWidget::save_highscore() const {
+
+    QFile highscore_file("highscore.txt");
+    if (!highscore_file.open(QIODevice::WriteOnly | QFile::Truncate)) {
+        //qWarning("Couldn't open highscore file.");
+        //return false;
+    }
+
+    QTextStream out(&highscore_file);
+    QList<QString>::size_type hs_size{0};
+    while ( hs_size < highscore_.size() ) {
+        out << highscore_.at(hs_size) << "\n";
+        qDebug() << out.status();
+        ++hs_size;
+    }
+
+    highscore_file.close();
+    //return true;
+
+
+}
+
+void ButtonsWidget::load_highscore() {
+
+    QFile highscore_file("highscore.txt");
+    if ( !highscore_file.open(QIODevice::ReadOnly) ) {
+        //qWarning("Couldn't open highscore file.");
+        //return false;
+    }
+    QTextStream in(&highscore_file);
+    QString line;
+
+
+    while ( in.readLineInto(&line) ) {
+        highscore_.push_back(line);
+        qDebug() << line << " size: " << highscore_.size();
+    }
+    highscore_file.close();
+    //return true;
 }
 
 void ButtonsWidget::generate_new_time() {
     int low{300};
     int high{1200};
     int random_number = (qrand() % ((high + 1) - low) + low);
-    qDebug() << random_number;
+    //qDebug() << random_number;
 
 }
 
@@ -152,11 +194,33 @@ void ButtonsWidget::stop_game() {
     game_timer_->stop();
     button_highlight_timer_->stop();
     status_label_->setText(QString("Game over! Correct clicks in row: %1").arg(QString::number(correct_)));
+    QMessageBox result;
+    result.setText(QString("Game Over! You managed to get %1 correct clicks!").arg(correct_));
+    result.setInformativeText("Would like to save highscore?");
+    result.setStandardButtons(QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
+    result.setDefaultButton(QMessageBox::Save);
+    int ret = result.exec();
+    qDebug() << ret;
+    switch (ret) {
+      case QMessageBox::Save:
+          // Save was clicked
+          break;
+      case QMessageBox::Discard:
+          // Don't Save was clicked
+          break;
+      case QMessageBox::Cancel:
+          // Cancel was clicked
+          break;
+      default:
+          // should never be reached
+          break;
+    }
     correct_ = 0;
     numbers_.clear();
     player_turn_ = 0;
     game_turn_ = 0;
     emit game_has_stopped();
+    //qDebug() << "loppu";
 }
 
 void ButtonsWidget::set_stylesheets() {

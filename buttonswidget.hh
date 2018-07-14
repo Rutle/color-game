@@ -24,7 +24,8 @@ class ButtonsWidget : public QWidget {
         void toggle_button_off();
         void button_clicked(int number);
     private:
-
+        void save_highscore() const;
+        void load_highscore();
         void generate_new_time();
         void stop_game();
         void set_stylesheets();
@@ -40,6 +41,7 @@ class ButtonsWidget : public QWidget {
         int correct_;
         QList<int> numbers_;
         QList<QPushButton *> buttons_;
+        QList<QString> highscore_;
 };
 
 #endif // BUTTONSWIDGET_HH

@@ -3,7 +3,7 @@
 #include <QStyleFactory>
 int main(int argc, char *argv[])
 {
-    qApp->setStyle(QStyleFactory::create("fusion"));
+
     /*
     QPalette palette;
     palette.setColor(QPalette::Window, QColor(53,53,53));
@@ -23,6 +23,9 @@ int main(int argc, char *argv[])
     qApp->setPalette(palette);
     */
     QApplication a(argc, argv);
+    qDebug() << QStyleFactory::keys();
+    // a.setStyle(QStyleFactory::create("Fusion"));
+    qApp->setStyle(QStyleFactory::create("Fusion"));
     Dialog w;
     w.show();
 
